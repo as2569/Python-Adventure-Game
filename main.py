@@ -1,5 +1,9 @@
 import sys
+import random
 
+class Player():
+    position = None
+                
 class Planet():
     def __init__(self, x, y):
         self.x = x
@@ -16,19 +20,28 @@ def TakeInput():
 
 
 class PlanetMap():
+    matrix = {}
+    
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.matrix = {(0, 0): Planet}
         
     def MakeEmpty(self):
         for x in range(0, self.width):
             for y in range(0, self.height):
                 self.matrix[(x, y)] = Planet(x, y)
-        return self.matrix
+
+    def GetPlanetAt(self, x, y):
+        return self.matrix[(x, y)]
     
-planetMapObj = PlanetMap(10, 10)
-grid = planetMapObj.MakeEmpty()
+    def GetRandomPlanet(self):
+        x = random.randint(0, self.width)
+        y = random.randint(0, self.height)
+        return self.GetPlanetAt(x, y)
+        
+planetMap = PlanetMap(10, 10)
+planetMap.MakeEmpty()
+currentPlanet = planetMap.GetRandomPlanet()
 
 while True:
     TakeInput()
