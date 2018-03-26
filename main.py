@@ -14,9 +14,22 @@ def TakeInput():
     else:
         print("Invalid command")
 
-def Setup():
-    grid = [x][y].:Cell
+
+class PlanetMap():
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.matrix = {(0, 0): Planet}
+        
+    def MakeEmpty(self):
+        for x in range(0, self.width):
+            for y in range(0, self.height):
+                self.matrix[(x, y)] = Planet(x, y)
+        return self.matrix
     
+planetMapObj = PlanetMap(10, 10)
+grid = planetMapObj.MakeEmpty()
+
 while True:
     TakeInput()
 
